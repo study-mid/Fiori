@@ -1,0 +1,36 @@
+<mvc:View controllerName="practiceb1201.controller.Main"
+    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+    xmlns:t="sap.ui.table">
+    <Page id="page" title="{>title}">
+        <content>
+            <Input id="idNum1" value="{idNum1}"></Input>
+            <Select id="idSelect" selectedItem="{/cal}">
+                <core:Item key="PLUS" text="{PLUS}"></core:Item>
+                <core:Item key="MINUS" text="{MINUS}"></core:Item>
+                <core:Item key="MULTIPLE" text="{MULTIPLE}"></core:Item>
+                <core:Item key="DIVISION" text="{DIVISION}"></core:Item>
+            </Select>
+            <Input id="idNum2" value="{idNum2}"></Input>
+            <Button id="idButton" press="onClick"></Button>
+            <Text id="idResult" text="{idResult}"></Text>
+
+            <t:Table id="idTable" rows="{/list}">
+                <t:extension>
+                    <OverflowToolbar >
+                        <Title text="계산 기록"></Title>
+                        <ToolbarSpacer ></ToolbarSpacer>
+                        <Button text="Delete" icon="sap-icon://delete" press="onDelete"></Button>
+                    </OverflowToolbar>
+                </t:extension>
+                <t:columns>
+                    <t:Column ></t:Column>
+                    <t:Column ></t:Column>
+                    <t:Column ></t:Column>
+                    <t:Column ></t:Column>
+                </t:columns>
+            </t:Table>
+        </content>
+    </Page>
+</mvc:View>

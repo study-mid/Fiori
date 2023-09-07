@@ -1,0 +1,58 @@
+<mvc:View controllerName="projectb1204.controller.Main"
+    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+    xmlns="sap.m"
+    xmlns:t="sap.ui.table">
+    <Page id="page" title="{i18n>title}">
+        <content>
+            <t:Table id="idTable" rows="{/list}" selectionMode="Single" selectionBehavior="Row" rowActionCount="1" visibleRowCount="7" paste="onPaste" ariaLabelledBy="title">
+                <t:extension>
+                    <OverflowToolbar style="Clear">
+                        <Title id="title" text="Products"/>
+                        <ToolbarSpacer ></ToolbarSpacer>
+                        <Button text="Add" icon="sap-icon://add" press="onAdd"></Button>
+                        <Button text="Delete" icon="sap-icon://delete" press="onDelete"></Button>
+                    </OverflowToolbar>
+                </t:extension>
+                <t:columns>
+                    <t:Column>
+                        <Label text="Name" />
+                        <t:template>
+                            <Input value="{Name}"/>
+                            <!-- <Text text="{>Name}" wrapping="false" /> -->
+                        </t:template>
+                    </t:Column>
+                    <t:Column>
+                        <Label text="Address" />
+                        <t:template>
+                            <Input value="{Address}"/>
+                            <!-- <Text text="{>Address}" wrapping="false"/> -->
+                        </t:template>
+                    </t:Column>
+                    <t:Column>
+                        <Label text="Phone" />
+                        <t:template>
+                            <Input value="{Phone}"/>
+                            <!-- <Text text="{>Phone}" wrapping="false"/> -->
+                        </t:template>
+                        <!-- Element Binding 또는 Context Binding이라고 부름 -->
+                        <!-- <Input binding="{main>/obj}"></Input> -->
+                    </t:Column>
+                    <t:Column>
+                        <Label text="Department" />
+                        <t:template>
+                            <Input value="{Department}"/>
+                            <!-- <Text text="{>Department}" wrapping="false"/> -->
+                        </t:template>
+                    </t:Column>
+                </t:columns>
+                <t:rowActionTemplate>
+                    <t:RowAction>
+                        <t:items>
+                            <t:RowActionItem type="Delete" press="onRowActionDel" />
+                        </t:items>
+                    </t:RowAction>
+                </t:rowActionTemplate>
+            </t:Table>
+        </content>
+    </Page>
+</mvc:View>

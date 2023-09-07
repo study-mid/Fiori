@@ -1,0 +1,73 @@
+<mvc:View controllerName="test.projectb1203.controller.Main"
+    xmlns:core="sap.ui.core"
+    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+    xmlns:t="sap.ui.table"
+    xmlns="sap.m">
+    <Page id="page" title="{i18n>title}">
+        <content>
+            <VBox>
+                <Panel headerText="계산기">
+                    <FlexBox height="150px" alignItems="Center" justifyContent="Center">
+                        <VBox >
+                            <Input id="num1" type="Number"></Input>
+                            <Select id="operator" selectedKey="{/SelectedProduct}" width="100%">
+                                <items>
+                                    <core:Item key="PLUS" text="+" />
+                                    <core:Item key="MINUS" text="-" />
+                                    <core:Item key="MULTIPLE" text="*" />
+                                    <core:Item key="DIVISION" text="/" />
+                                </items>
+                            </Select>
+                            <Input id="num2" type="Number" change="onChange"></Input>
+                            <Button id="target_btn" text="계산 실행" press="onClick"></Button>
+                            <Text id="result" text="결과 출력"></Text>
+                        </VBox>
+                    </FlexBox>
+                </Panel>
+                <!-- <Panel headerText="{/title}">
+                    <Text text="{/name}"> </Text>
+                    <Text text="{/list/0/phone}"> </Text>
+                    <Text text="{/age}"></Text>
+                </Panel> -->
+                <!-- Aggregation Binding 또는
+                    List Binding 또는 배열 바인딩이라고 부름.-->
+                <!-- sap.ui.table.Table -->
+                <t:Table rows="{main>/list}" selectionMode="MultiToggle" visibleRowCount="7" paste="onPaste" ariaLabelledBy="title">
+                    <t:extension>
+                        <OverflowToolbar style="Clear">
+                            <Title id="title" text="Products"/>
+                        </OverflowToolbar>
+                    </t:extension>
+                    <t:columns>
+                        <t:Column width="11rem">
+                            <Label text="Number1" />
+                            <t:template>
+                                <Text text="{main>num1}" wrapping="false" />
+                            </t:template>
+                        </t:Column>
+                        <t:Column width="11rem">
+                            <Label text="Operator" />
+                            <t:template>
+                                <Text text="{main>operator}" wrapping="false"/>
+                            </t:template>
+                        </t:Column>
+                        <t:Column width="11rem">
+                            <Label text="Number2" />
+                            <t:template>
+                                <Text text="{main>num2}" wrapping="false"/>
+                            </t:template>
+                            <!-- Element Binding 또는 Context Binding이라고 부름 -->
+                            <!-- <Input binding="{main>/obj}"></Input> -->
+                        </t:Column>
+                        <t:Column width="11rem">
+                            <Label text="Result" />
+                            <t:template>
+                                <Text text="{main>result}" wrapping="false"/>
+                            </t:template>
+                        </t:Column>
+                    </t:columns>
+                </t:Table>
+            </VBox>
+        </content>
+    </Page>
+</mvc:View>
