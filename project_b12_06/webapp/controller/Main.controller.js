@@ -15,7 +15,7 @@ sap.ui.define(
                 pattern: "yyyy-MM-dd",
               });
 
-            return oDateTimeInstance.foramt(oDate);
+            return oDateTimeInstance.format(oDate);
           }
         },
       },
