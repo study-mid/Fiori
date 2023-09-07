@@ -1,8 +1,8 @@
 <mvc:View controllerName="projectb1206.controller.Main"
-    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+    xmlns:mvc="sap.ui.core.mvc"
     xmlns="sap.m"
     xmlns:f="sap.f"
-    xmlns:layout="sap.ui.layout">
+    xmlns:layout="sap.ui.layout" height="100%">
     <f:DynamicPage id="dynamicPageId" headerExpanded="{/headerExpanded}" toggleHeaderOnTitleClick="{/titleClickable}">
         <!-- DynamicPage Title -->
         <f:title>
@@ -17,9 +17,15 @@
             <f:DynamicPageHeader pinnable="true">
                 <layout:HorizontalLayout allowWrapping="true">
                     <layout:VerticalLayout class="sapUiMediumMarginEnd">
-                        <ObjectAttribute title="Location" text="Warehouse A"/>
+                        <!-- <ObjectAttribute title="Location" text="Warehouse A"/>
                         <ObjectAttribute title="Halway" text="23L"/>
-                        <ObjectAttribute title="Rack" text="34"/>
+                        <ObjectAttribute title="Rack" text="34"/> -->
+                        <Label text = "Order ID" />
+                        <Input showValueHelp="true" valueHelpRequest="onValueHelp" />
+                        <!-- input 옆에 생성되는 아이콘 추가 -->
+                        <!-- valueHelpRequest 이벤트 추가 -->
+
+
                     </layout:VerticalLayout>
 
                     <layout:VerticalLayout>
@@ -40,18 +46,23 @@
                     <Column width="12em">
                         <Text text="OrderID" />
                     </Column>
+
                     <Column width="12em">
-                        <Text text="CustomID" />
+                        <Text text="CustomerID" />
                     </Column>
+
                     <Column width="12em">
                         <Text text="EmployeeID" />
                     </Column>
+
                     <Column width="12em">
                         <Text text="OrderDate" />
                     </Column>
+
                     <Column width="12em">
                         <Text text="RequiredDate" />
                     </Column>
+
                     <Column width="12em">
                         <Text text="ShippedDate" />
                     </Column>
@@ -60,21 +71,21 @@
                     <ColumnListItem>
                         <cells>
                             <Text text="{OrderID}" />
-                        </cells>
-                        <cells>
                             <Text text="{CustomerID}" />
-                        </cells>
-                        <cells>
-                            <Text text="{EmployeeID}" />
-                        </cells>
-                        <cells>
-                            <Text text="{OrderDate}" />
-                        </cells>
-                        <cells>
-                            <Text text="{RequiredDate}" />
-                        </cells>
-                        <cells>
-                            <Text text="{ShippedDate}" />
+                            <Input enabled="{=${EmployeeID}>3? 'Yes':'No'}"
+                            value="{CustomerID}" />
+                            <Text text="{
+                                path: 'OrderDate',
+                                formatter:'formatter.fnDateString'
+                            }" />
+                            <Text text="{
+                                path: 'RequiredDate',
+                                formatter:'formatter.fnDateString'
+                            }" />
+                            <Text text="{
+                                path: 'ShippedDate',
+                                formatter:'formatter.fnDateString'
+                            }" />
                         </cells>
                     </ColumnListItem>
                 </items>
@@ -90,4 +101,5 @@
             </OverflowToolbar>
         </f:footer>
     </f:DynamicPage>
+
 </mvc:View>
