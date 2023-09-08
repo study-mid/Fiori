@@ -92,7 +92,18 @@ sap.ui.define(
         // oTable.getBinding('rows').filter() => 이렇게 하면 필터 초기화
 
         oTable.getBinding("rows").filter(aFilters);
+      },
+
+      onSearch: function () {
+        var oTable = this.byId("idProductsTable");
+        var oInput = this.byId("idOrderInput").getValue();
         debugger;
+        var oFilter = new Filter({
+          path: "OrderID",
+          operator: "EQ",
+          value1: oInput,
+        });
+        oTable.getBinding("items").filter(oFilter);
       },
     });
   }

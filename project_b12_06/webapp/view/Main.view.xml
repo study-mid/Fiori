@@ -10,6 +10,17 @@
                 <f:heading>
                     <Title text="Northwind"/>
                 </f:heading>
+                <f:actions>
+                    <Button text="Search" type="Emphasized" press="onSearch"></Button>
+                    <!-- 검색 기능 구현
+                    
+                        1. Button의 press 이벤트 함수(onSearch) 작성
+                        2. "OrderID" 필드를 기준으로 Filter 객체 생성
+                        3. Table의 Binding 정보를 가져온 후, Binding의 filter 정보 세팅
+                        4. 결과 확인
+                        
+                    -->
+                </f:actions>
             </f:DynamicPageTitle>
         </f:title>
         <!-- DynamicPage Header -->
@@ -21,7 +32,7 @@
                         <ObjectAttribute title="Halway" text="23L"/>
                         <ObjectAttribute title="Rack" text="34"/> -->
                         <Label text = "Order ID" />
-                        <Input showValueHelp="true" valueHelpRequest="onValueHelp" />
+                        <Input id="idOrderInput" showValueHelp="true" valueHelpRequest="onValueHelp" />
                         <!-- input 옆에 생성되는 아이콘 추가 -->
                         <!-- valueHelpRequest 이벤트 추가 -->
 
@@ -72,8 +83,7 @@
                         <cells>
                             <Text text="{OrderID}" />
                             <Text text="{CustomerID}" />
-                            <!-- <Input enabled="{=${EmployeeID}>3? 'Yes':'No'}"
-                            value="{CustomerID}" /> -->
+                            <!-- <Input enabled="{=${EmployeeID}>3? 'Yes':'No'}" value="{CustomerID}" /> -->
                             <Text text="{=${EmployeeID}>3? 'Yes': ${CustomerID}}"/>
                             <Text text="{
                                 path: 'OrderDate',
