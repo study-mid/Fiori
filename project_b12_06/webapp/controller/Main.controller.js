@@ -105,6 +105,17 @@ sap.ui.define(
         });
         oTable.getBinding("items").filter(oFilter);
       },
+
+      onNavDetail: function () {
+        // Detail.view.xml로 이동
+        var oRouter = this.getOwnerComponent().getRouter();
+        // oRouter.navTo(/**라우트 객체 이름 */);
+        oRouter.navTo("RouteDetail", {
+          paramOrder: "OrderID",
+          // param2: "Option", -> Optional
+        }); // -> 히스토리 클리어하는 navTo 코드
+        // oRouter.navTo("RouteDetail");
+      },
     });
   }
 );

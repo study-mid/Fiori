@@ -20,6 +20,7 @@
                         4. 결과 확인
                         
                     -->
+                    <Button text="Detail" press="onNavDetail"></Button>
                 </f:actions>
             </f:DynamicPageTitle>
         </f:title>
