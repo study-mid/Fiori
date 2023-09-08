@@ -72,19 +72,20 @@
                         <cells>
                             <Text text="{OrderID}" />
                             <Text text="{CustomerID}" />
-                            <Input enabled="{=${EmployeeID}>3? 'Yes':'No'}"
-                            value="{CustomerID}" />
+                            <!-- <Input enabled="{=${EmployeeID}>3? 'Yes':'No'}"
+                            value="{CustomerID}" /> -->
+                            <Text text="{=${EmployeeID}>3? 'Yes': ${CustomerID}}"/>
                             <Text text="{
                                 path: 'OrderDate',
-                                formatter:'formatter.fnDateString'
+                                formatter:'.formatter.fnDateString'
                             }" />
                             <Text text="{
                                 path: 'RequiredDate',
-                                formatter:'formatter.fnDateString'
+                                formatter:'.formatter.fnDateString'
                             }" />
                             <Text text="{
                                 path: 'ShippedDate',
-                                formatter:'formatter.fnDateString'
+                                formatter:'.formatter.fnDateString'
                             }" />
                         </cells>
                     </ColumnListItem>

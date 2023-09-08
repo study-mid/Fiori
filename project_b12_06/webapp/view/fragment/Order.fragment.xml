@@ -1,41 +1,46 @@
-<c:FragmentDefinition 
-xmlns:c="sap.ui.core"
-xmlns:t="sap.ui.table"
-xmlns="sap.m">
+<c:FragmentDefinition xmlns:c="sap.ui.core"
+     xmlns:t="sap.ui.table"
+     xmlns="sap.m">
 
-    <Dialog id="idDialog" title="Hello Dialog" 
-    contentHeight="50%" 
-    contentWidth="40%">
-        <content>
-            <!-- <Text text="Hello Content!"/>             -->
-            <t:Table
-                rows="{/Orders}"
-                selectionMode="MultiToggle"
-                visibleRowCount="7"
-                paste="onPaste"
-                ariaLabelledBy="title">
-                <t:columns>
-
-                    <t:Column>
-                        <Label text="Order ID" />
-                        <t:template>
-                             <Text text="{OrderID}" wrapping="false" />
-                        </t:template>
-                   </t:Column>  
+     <Dialog id="idDialog" beforeOpen="onBeforeOpen" resizable="true" draggable="true" title="Hello Dialog" contentHeight="50%" contentWidth="40%">
+          <content>
+               <!-- <Text text="Hello Content!"/>             -->
+               <t:Table id="idOrderTable" rows="{/Orders}" selectionMode="MultiToggle" visibleRowCount="7" paste="onPaste" ariaLabelledBy="title">
+                    <!-- rows="{
+                    path:'/Orders'
+                    filters:[{
+                         path: 'EmployeeID'
+                         operator: 'GE'
+                         value1: 4
+                         value2: ''
+                    },{
+                         path: 'CustomerID',
+                         operator: 'Contains',
+                         value1: 'R'
+                    }]
+                }"-->
+                    <t:columns>
 
                          <t:Column>
-                        <Label text="CustomerID" />
-                        <t:template>
-                             <Text text="{CustomerID}" wrapping="false" />
-                        </t:template>
-                   </t:Column>  
+                              <Label text="Order ID" />
+                              <t:template>
+                                   <Text text="{OrderID}" wrapping="false" />
+                              </t:template>
+                         </t:Column>
 
                          <t:Column>
-                        <Label text="EmployeeID" />
-                        <t:template>
-                             <Text text="{EmployeeID}" wrapping="false" />
-                        </t:template>
-                   </t:Column>  
+                              <Label text="CustomerID" />
+                              <t:template>
+                                   <Text text="{CustomerID}" wrapping="false" />
+                              </t:template>
+                         </t:Column>
+
+                         <t:Column>
+                              <Label text="EmployeeID" />
+                              <t:template>
+                                   <Text text="{EmployeeID}" wrapping="false" />
+                              </t:template>
+                         </t:Column>
 
                          <!-- <t:Column>
                         <Label text="OrderDate" />
@@ -58,13 +63,13 @@ xmlns="sap.m">
                         </t:template>
                    </t:Column>   -->
 
-                     
-                    
-                </t:columns>
-            </t:Table>
-        </content>
-        <endButton>
-            <Button text="Close" press="onClose"/>
-        </endButton>
-    </Dialog>
+
+
+                    </t:columns>
+               </t:Table>
+          </content>
+          <endButton>
+               <Button text="Close" press="onClose"/>
+          </endButton>
+     </Dialog>
 </c:FragmentDefinition>
