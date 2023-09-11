@@ -116,6 +116,24 @@ sap.ui.define(
         }); // -> 히스토리 클리어하는 navTo 코드
         // oRouter.navTo("RouteDetail");
       },
+
+      onSelectionChange: function (oEvent) {
+        var sPath = oEvent.getParameters().listItem.getBindingContextPath();
+        var oModel = this.getView().getModel();
+        var oRouter = this.getOwnerComponent().getRouter();
+
+        // oDataModel.getProperty(경로) 해서 해당 Row의 전체 데이터 가져오기
+        // => 전체데이터.OrderId를 통해 OrderId 값을 얻을 수 있다. (data.OrderId)
+        var OrderID = oModel.getProperty(sPath).OrderID;
+        debugger;
+        // Detail 화면으로 이동
+        // => 이동 시, 해당 OrderID를 필수 파라미터로 포함
+        oRouter.navTo("RouteDetail", {
+          paramOrder: OrderID,
+        });
+        // <테스트>
+        // Detail 라우터의 URL에 OrderID 값이 잘 들어오는지 확인
+      },
     });
   }
 );

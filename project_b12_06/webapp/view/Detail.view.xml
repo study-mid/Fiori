@@ -2,9 +2,68 @@
     xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
     xmlns="sap.m"
     xmlns:f="sap.f"
-    xmlns:layout="sap.ui.layout" height="100%">
-    <Page title="Detail Page"
-        showNavButton="true"
-        navButtonPress="onNavMain">
+    xmlns:layout="sap.ui.layout" height="100%"
+    xmlns:form="sap.ui.layout.form">
+    <Page title="Detail Page" showNavButton="true" navButtonPress="onNavMain">
+        <form:SimpleForm id="idSimpleForm" layout="ResponsiveGridLayout" title="Order Detail">
+            <form:content>
+                <Label text="OrderID" />
+                <!-- <Input value="{OrderID}" /> -->
+                <Text text="{OrderID}"/>
+                <Label text="CustomerID" />
+                <Text text="{CustomerID}"/>
+                <!-- <Input value="{CustomerID}">
+                </Input> -->
+                <Label text="EmployeeID" />
+                <Text text="{EmployeeID}"/>
+                <!-- <Input value="{EmployeeID}">
+                </Input> -->
+                <Label text="OrderDate" />
+                <Text text="{OrderDate}"/>
+                <!-- <Input value="{OrderDate}">
+                </Input> -->
+                <Label text="RequiredDate" />
+                <Text text="{RequiredDate}"/>
+                <!-- <Input value="{RequiredDate}">
+                </Input> -->
+                <Label text="ShippedDate" />
+                <Text text="{ShippedDate}"/>
+                <!-- <Input value="{ShippedDate}">
+                </Input> -->
+                <Label text="ShipVia" />
+                <Text text="{ShipVia}"/>
+                <!-- <Input value="{ShipVia}">
+                </Input> -->
+                <Label text="Freight" />
+                <Text text="{Freight}"/>
+                <!-- <Input value="{Freight}">
+                </Input> -->
+                <Label text="ShipName" />
+                <Text text="{ShipName}"/>
+                <!-- <Input value="{ShipName}">
+                </Input> -->
+                <Label text="ShipAddress" />
+                <Text text="{ShipAddress}"/>
+                <!-- <Input value="{ShipAddress}">
+                </Input> -->
+                <Label text="ShipCity" />
+                <Text text="{ShipCity}"/>
+                <!-- <Input value="{ShipCity}">
+                </Input> -->
+                <Label text="ShipRegion" />
+                <Text text="{ShipRegion}"/>
+                <!-- <Input value="{ShipRegion}">
+                </Input> -->
+                <Label text="ShipPostalCode" />
+                <Text text="{ShipPostalCode}"/>
+                <!-- <Input value="{ShipPostalCode}">
+                </Input> -->
+                <Label text="ShipCountry" />
+                <Text text="{ShipCountry}"/>
+                <!-- <Input value="{ShipCountry}">
+                </Input> -->
+            </form:content>
+
+        </form:SimpleForm>
     </Page>
 </mvc:View>

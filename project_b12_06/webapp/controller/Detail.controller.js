@@ -22,6 +22,9 @@ sap.ui.define(
         // 파라미터로 받은 값들 가져오기
         var oParam = oEvent.getParameters().arguments;
 
+        console.log(oParam.paramOrder);
+
+        this.getView().bindElement(`/Orders(${oParam.paramOrder})`);
         // oParam 안에는 manifest.json에 등록된,
         // RouteDetail의 Parameter 값들이 있음
       },
