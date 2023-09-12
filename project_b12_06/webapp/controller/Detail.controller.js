@@ -30,7 +30,9 @@ sap.ui.define(
         // RouteDetail의 Parameter 값들이 있음
         // EntitySetName(Key1='value', Key2='')
 
-        var sPath = oModel.createKey("/Orders");
+        var sPath = oModel.createKey("/Orders", {
+          OrderID: oParam.paramOrder,
+        });
 
         oModel.read(sPath, {
           urlParameters: {
