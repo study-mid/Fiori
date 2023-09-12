@@ -2,7 +2,8 @@
     xmlns:mvc="sap.ui.core.mvc"
     xmlns="sap.m"
     xmlns:f="sap.f"
-    xmlns:layout="sap.ui.layout" height="100%">
+    xmlns:layout="sap.ui.layout" height="100%"
+    xmlns:fb="sap.ui.comp.filterbar">
     <f:DynamicPage id="dynamicPageId" headerExpanded="{/headerExpanded}" toggleHeaderOnTitleClick="{/titleClickable}">
         <!-- DynamicPage Title -->
         <f:title>
@@ -11,7 +12,7 @@
                     <Title text="Northwind"/>
                 </f:heading>
                 <f:actions>
-                    <Button text="Search" type="Emphasized" press="onSearch"></Button>
+                    <!-- <Button text="Search" type="Emphasized" press="onSearch"></Button> -->
                     <!-- 검색 기능 구현
                     
                         1. Button의 press 이벤트 함수(onSearch) 작성
@@ -20,31 +21,50 @@
                         4. 결과 확인
                         
                     -->
-                    <Button text="Detail" press="onNavDetail"></Button>
+                    <!-- <Button text="Detail" press="onNavDetail"></Button> -->
                 </f:actions>
             </f:DynamicPageTitle>
         </f:title>
         <!-- DynamicPage Header -->
         <f:header>
             <f:DynamicPageHeader pinnable="true">
-                <layout:HorizontalLayout allowWrapping="true">
-                    <layout:VerticalLayout class="sapUiMediumMarginEnd">
-                        <!-- <ObjectAttribute title="Location" text="Warehouse A"/>
+                <!-- <layout:HorizontalLayout allowWrapping="true">
+                    <layout:VerticalLayout class="sapUiMediumMarginEnd"> -->
+                <!-- <ObjectAttribute title="Location" text="Warehouse A"/>
                         <ObjectAttribute title="Halway" text="23L"/>
                         <ObjectAttribute title="Rack" text="34"/> -->
-                        <Label text = "Order ID" />
-                        <Input id="idOrderInput" showValueHelp="true" valueHelpRequest="onValueHelp" />
-                        <!-- input 옆에 생성되는 아이콘 추가 -->
-                        <!-- valueHelpRequest 이벤트 추가 -->
-
-
-                    </layout:VerticalLayout>
-
+                <!-- <Label text = "Order ID" />
+                        <Input id="idOrderInput" showValueHelp="true" valueHelpRequest="onValueHelp" /> -->
+                <!-- input 옆에 생성되는 아이콘 추가 -->
+                <!-- valueHelpRequest 이벤트 추가 -->
+                <!-- </layout:VerticalLayout>
                     <layout:VerticalLayout>
                         <ObjectAttribute title="Availability"/>
                         <ObjectStatus text="In Stock" state="Success" />
                     </layout:VerticalLayout>
-                </layout:HorizontalLayout>
+                </layout:HorizontalLayout> -->
+                <f:content>
+                    <fb:FilterBar id="filterbar" persistencyKey="myPersKey" useToolbar="false" search=".onSearch" filterChange=".onFilterChange" afterVariantLoad=".onAfterVariantLoad">
+                        <fb:filterGroupItems>
+                            <fb:FilterGroupItem name="OrderID" label="OrderID" groupName="Group1" visibleInFilterBar="true">
+                                <fb:control>
+                                <Input id="idOrderInput" showValueHelp="true" valueHelpRequest="onValueHelp" />
+                                </fb:control>
+                            </fb:FilterGroupItem>
+                            <fb:FilterGroupItem name="CustomerID" label="CustomerID" groupName="Group1" visibleInFilterBar="true">
+                                <fb:control>
+                                <Input id="idCustomInput" showValueHelp="true" valueHelpRequest="onCustValueHelp" />
+                                </fb:control>
+                            </fb:FilterGroupItem>
+                            <fb:FilterGroupItem name="OrderDate" label="OrderDate" groupName="Group1" visibleInFilterBar="true">
+                                <fb:control>
+                                    <DateRangeSelection id="idDateInput" displayFormat="yyyy-MM-dd"></DateRangeSelection>
+                                    <!-- From~To가 아니라 단일 날짜 형태면 DatePicker 사용 -->
+                                </fb:control>
+                            </fb:FilterGroupItem>
+                        </fb:filterGroupItems>
+                    </fb:FilterBar>
+                </f:content>
             </f:DynamicPageHeader>
         </f:header>
         <f:content>

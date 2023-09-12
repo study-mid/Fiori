@@ -28,7 +28,8 @@ sap.ui.define(
       onInit: function () {},
 
       onValueHelp: function () {
-        var oDialog = this.byId("idDialog");
+        // 신문법
+        var oDialog = sap.ui.getCore().byId("idDialog");
         var oModel = this.getView().getModel();
         //manifest.json 의 모델을 가져오게된다.
         // var oDialog = this.byId("idDialog");
@@ -45,6 +46,7 @@ sap.ui.define(
             oDialog.setModel(oModel);
             oDialog.open();
           });
+          debugger;
         } else {
           oDialog.open();
         }
@@ -59,6 +61,24 @@ sap.ui.define(
         //     oDialog.open();
         //   }.bind(this)
         // );
+      },
+      onCustValueHelp: function () {
+        // 구문법
+        var oDialog = this.byId("idCustDialog");
+        var oModel = this.getView().getModel();
+        debugger;
+        if (!oDialog) {
+          this.loadFragment({
+            name: "projectb1206.view.fragment.CustomerID",
+            type: "XML",
+            controller: this,
+          }).then(function (oDialog2) {
+            oDialog.setModel(oModel);
+            oDialog.open();
+          });
+        } else {
+          oDialog.open();
+        }
       },
 
       onClose: function (oEvent) {
@@ -90,20 +110,95 @@ sap.ui.define(
         // 바인딩 정보 중 filter 안에 필터 객체를 추가
         // -> 이 때 filter() 안에는 Object 또는 Array 형태가 들어 갈 수 있음
         // oTable.getBinding('rows').filter() => 이렇게 하면 필터 초기화
-
+        debugger;
         oTable.getBinding("rows").filter(aFilters);
+        // cTable.getBinding("rows").filter(aFilters);
       },
 
       onSearch: function () {
         var oTable = this.byId("idProductsTable");
-        var oInput = this.byId("idOrderInput").getValue();
+        var oOrderInput = this.byId("idOrderInput").getValue();
+        var oCustInput = this.byId("idCustomInput").getValue();
+        var oDateRange = this.byId("idDateInput");
+        var aFilters = [];
+
+        // 230911 미완 - Search 기능 완성X
+        // oOrderInput && oCustInput일 때가 없어서인듯
+        // if (oOrderInput) {
+        //   var oFilter1 = new Filter({
+        //     path: "OrderID",
+        //     operator: "EQ",
+        //     value1: oOrderInput,
+        //   });
+        // }
+        // if (oCustInput) {
+        //   var oFilter2 = new Filter({
+        //     path: "CustomerID",
+        //     operator: "EQ",
+        //     value1: oCustInput,
+        //   });
+        // }
+        // if (oDateRange.getDateValue() && oDateRange.getSecondDateValue()) {
+        //   var oFilter3 = new Filter({
+        //     path: "OrderDate",
+        //     operator: "BT",
+        //     value1: oDateRange.getDateValue(),
+        //     value2: oDateRange.getSecondDateValue(),
+        //   });
+        // }
+        // aFilters.push(oFilter1);
+        // aFilters.push(oFilter2);
+        // aFilters.push(oFilter3);
         debugger;
-        var oFilter = new Filter({
-          path: "OrderID",
-          operator: "EQ",
-          value1: oInput,
-        });
-        oTable.getBinding("items").filter(oFilter);
+
+        if (oOrderInput) {
+          aFilters.push(
+            new Filter({
+              path: "OrderID",
+              operator: "EQ",
+              value1: oOrderInput,
+            })
+          );
+        } else if (oCustInput) {
+          aFilters.push(
+            new Filter({
+              path: "CustomerID",
+              operator: "EQ",
+              value1: oCustInput,
+            })
+          );
+        } else if (oOrderInput && oCustInput) {
+          aFilters.push(
+            new Filter({
+              path: "OrderID",
+              operator: "EQ",
+              value1: oOrderInput,
+            })
+          ),
+            aFilters.push(
+              new Filter({
+                path: "CustomerID",
+                operator: "EQ",
+                value1: oCustInput,
+              })
+            );
+        }
+        if (oDateRange.getDateValue() && oDateRange.getSecondDateValue()) {
+          aFilters.push(
+            new Filter({
+              path: "OrderDate",
+              operator: "BT",
+              value1: oDateRange.getDateValue(),
+              value2: oDateRange.getSecondDateValue(),
+            })
+          );
+        }
+
+        // oTable
+        // .getBinding("items")
+        // .filter((aFilters.length && aFilters) || undefined);
+
+        oTable.getBinding("items").filter(aFilters);
       },
 
       onNavDetail: function () {
