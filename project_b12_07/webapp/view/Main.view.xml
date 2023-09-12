@@ -1,7 +1,44 @@
 <mvc:View controllerName="projectb1207.controller.Main"
     xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
-    xmlns="sap.m">
+    xmlns="sap.m"
+    xmlns:viz="sap.viz.ui5.controls"
+    xmlns:viz.feeds="sap.viz.ui5.controls.common.feeds"
+    xmlns:viz.data="sap.viz.ui5.data">
     <Page id="page" title="{i18n>title}">
-        <content />
+        <content>
+            <viz:VizFrame id="idLineChart" width="auto" height="500px" vizType="bar" uiConfig="{'applicationSet': 'fiori'}" vizProperties="{
+                'title':{'visible': true, 'text': 'Line Chart'},
+                'legendGroup':{layout:{position:'left'}},
+                'plotArea' : {
+                    drawingEffect:'glossy',
+                    colorPalette: ['#B5B2FF', '#E8D9FF']
+                }
+            }">
+                <viz:dataset>                    
+                <!-- 데이터 세팅 -->
+                    <viz.data:FlattenedDataset data="{view>/list}">
+                        <viz.data:dimensions>                            
+                        <!-- X축 -->
+                            <viz.data:DimensionDefinition name="이름" value="{view>name}"/>
+                        </viz.data:dimensions>
+
+                        <viz.data:measures>                            
+                        <!-- Y축 -->
+                            <viz.data:MeasureDefinition name="숫자" value="{view>rate}"/>
+                            <viz.data:MeasureDefinition name="숫자2" value="{view>cost}"/>
+                        </viz.data:measures>
+                    </viz.data:FlattenedDataset>
+                </viz:dataset>
+
+                <viz:feeds>                    
+                <!-- 차트 관련 UI 설정 -->
+                <!-- line/bar->categoryAxis+valueAxis / pie/donut->color+value -->
+                    <viz.feeds:FeedItem uid="categoryAxis" type="Dimension" values="이름"/>
+                    <viz.feeds:FeedItem uid="valueAxis" type="Measure" values="숫자"/>
+                    <viz.feeds:FeedItem uid="valueAxis" type="Measure" values="숫자2"/>
+                </viz:feeds>
+            </viz:VizFrame>
+            <viz:VizFrame id="idChart" vizType="column" />
+        </content>
     </Page>
 </mvc:View>
