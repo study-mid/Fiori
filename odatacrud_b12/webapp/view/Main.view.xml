@@ -1,0 +1,82 @@
+<mvc:View controllerName="odatacrudb12.controller.Main"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns:core="sap.ui.core"
+    xmlns="sap.m"
+    xmlns:l="sap.ui.layout">
+    <Page id="page" title="{i18n>title}">
+        <content>
+            <l:Grid class="sapUiSmallMargin" containerQuery="true" defaultSpan="XL2 L4">
+                <Input value="{view>/MB_ID}" placeholder="Member ID" description="MB_ID" >
+                    <layoutData>
+                        <l:GridData span="XL6 L6 M4 S12"/>
+                    </layoutData>
+                </Input>
+                <Input value="{view>/MB_NM}" placeholder="Member Name" description="MB_NM" >
+                    <layoutData>
+                        <l:GridData span="XL6 L6 M4 S12"/>
+                    </layoutData>
+                </Input>
+                <Input value="{view>/TELNO}" placeholder="Tel." description="TELNO" >
+                    <layoutData>
+                        <l:GridData span="XL6 L6 M4 S12"/>
+                    </layoutData>
+                </Input>
+                <Input value="{view>/EMAIL}" placeholder="Email" description="EMAIL" >
+                    <layoutData>
+                        <l:GridData span="XL6 L6 M4 S12"/>
+                    </layoutData>
+                </Input>
+                <Input value="{view>/MB_ST}" placeholder="Member Status" description="MB_ST" >
+                    <layoutData>
+                        <l:GridData span="XL6 L6 M4 S12"/>
+                    </layoutData>
+                </Input>
+            </l:Grid>
+        </content>
+        <Table id="idMemberTable" inset="false"  mode="SingleSelectMaster" items="{/MemberSet}">
+            <headerToolbar>
+                <OverflowToolbar>
+                    <content>
+                        <Title text="Member List" level="H2"/>
+                        <ToolbarSpacer />
+                        <Button text="Read Entity" type="Emphasized" press="onRead"/>
+                        <Button text="Create" type="Emphasized" press="onCreate"/>
+                        <Button text="Update" type="Emphasized" press="onUpdate"/>
+                        <Button text="Delete" type="Emphasized" press="onDelete"/>
+                    </content>
+                </OverflowToolbar>
+            </headerToolbar>
+            <infoToolbar>
+            </infoToolbar>
+            <columns>
+                <Column >
+                    <Text text="Member ID" />
+                </Column>
+                <Column >
+                    <Text text="Member Name" />
+                </Column>
+                <Column >
+                    <Text text="Tel." />
+                </Column>
+                <Column >
+                    <Text text="Email" />
+                </Column>
+                <Column >
+                    <Text text="Member Status" />
+                </Column>
+            </columns>
+            <items>
+                <ColumnListItem vAlign="Middle">
+                    <cells>
+                        <Text text="{MB_ID}"/>
+                        <Text text="{MB_NM}"/>
+                        <Text text="{TELNO}"/>
+                        <Text text="{EMAIL}"/>
+                        <Text text="{MB_ST}"/>
+                    </cells>
+                </ColumnListItem>
+            </items>
+        </Table>
+    </Page>
+
+</mvc:View>
