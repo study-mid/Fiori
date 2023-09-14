@@ -27,6 +27,8 @@ sap.ui.define(
           .getSelectedItem()
           .getBindingContext()
           .getObject().MB_ID;
+        // var sValue = oTable.getSelectedContext()[0].getObject().MB_ID;
+        // -> Context가 있다는건 모델에 접근한다는 뜻으로 생각할 수 있다.
 
         var sPath = oDataModel.createKey("/MemberSet", {
           MB_ID: sValue,
