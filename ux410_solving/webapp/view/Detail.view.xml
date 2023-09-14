@@ -1,0 +1,48 @@
+<mvc:View xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.uxap"
+    xmlns:m="sap.m"
+    xmlns:f="sap.form"
+    xmlns:form="sap.ui.layout.form"
+    xmlns:layout="sap.ui.layout" height="100%"
+    controllerName="sap.btp.ux410solving.controller.Detail">
+    <ObjectPageLayout id="ObjectPageLayout" upperCaseAnchorBar="false">
+        <headerTitle>
+			<!-- <ObjectPageHeader objectTitle="Order ID : {OrdersDetails>/OrderID}" /> -->
+            <ObjectPageDynamicHeaderTitle >
+                <expandedHeading>
+                    <m:HBox >
+                        <m:Title text="Order ID : {OrderDetails>/OrderID}"/>
+                    </m:HBox>
+                </expandedHeading>
+            </ObjectPageDynamicHeaderTitle>
+		</headerTitle>
+		<headerContent>
+			<m:Label text="Order detail text" />
+		</headerContent>
+        <sections>
+            <ObjectPageSection >
+                <subSections>
+                    <ObjectPageSubSection >
+                        <form:SimpleForm id="idSimpleForm" layout="ResponsiveGridLayout" title="Info">
+                            <form:content>
+                                <m:Label text="OrderID" />
+                                <m:Text text="{OrderDetails>/OrderID}"/>
+                                <m:Label text="ProductID" />
+                                <m:Text text="{OrderDetails>/ProductID}"/>
+                                <m:Label text="UnitPrice" />
+                                <m:Text text="{OrderDetails>/UnitPrice}"/>
+                                <m:Label text="Quantity" />
+                                <m:Text text="{OrderDetails>/Quantity}"/>
+                                <m:Label text="Discount" />
+                                <m:Text text="{OrderDetails>/Discount}"/>
+                            </form:content>
+
+                        </form:SimpleForm>
+                    </ObjectPageSubSection>
+                </subSections>
+            </ObjectPageSection>
+        </sections>
+
+    </ObjectPageLayout>
+
+</mvc:View>

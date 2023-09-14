@@ -12,7 +12,7 @@
                     <Title text="Northwind"/>
                 </f:heading>
                 <f:actions>
-                    <!-- <Button text="Search" type="Emphasized" press="onSearch"></Button> -->
+                    <Button text="Search" type="Emphasized" press="onSearch"></Button>
                     <!-- 검색 기능 구현
                     
                         1. Button의 press 이벤트 함수(onSearch) 작성
@@ -21,7 +21,7 @@
                         4. 결과 확인
                         
                     -->
-                    <!-- <Button text="Detail" press="onNavDetail"></Button> -->
+                    <Button text="Detail" press="onNavDetail"></Button>
                 </f:actions>
             </f:DynamicPageTitle>
         </f:title>
