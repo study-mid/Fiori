@@ -4,11 +4,12 @@ sap.ui.define(
     "sap/ui/model/json/JSONModel",
     "sap/ui/model/Filter",
     "sap/ui/core/Fragment",
+    "sap/m/MessageToast",
   ],
   /**
    * @param {typeof sap.ui.core.mvc.Controller} Controller
    */
-  function (Controller, JSONModel, Filter, Fragment) {
+  function (Controller, JSONModel, Filter, Fragment, MessageToast) {
     "use strict";
 
     return Controller.extend("exam.exprogramb12.controller.Main", {
@@ -133,15 +134,26 @@ sap.ui.define(
         // var oModel = this.getView().getModel();
         var oTable = this.byId("idCarriersTable");
         var oRouter = this.getOwnerComponent().getRouter();
-        var Carrid = oTable
-          .getSelectedItem()
-          .getBindingContext()
-          .getObject().Carrid;
-        debugger;
+        var msg = "Column unselected.";
 
-        oRouter.navTo("RouteDetail", {
-          paramID: Carrid,
-        });
+        if (oTable.getSelectedItem()) {
+          // oRouter.navTo(/**라우트 객체 이름 */);
+          var Carrid = oTable
+            .getSelectedItem()
+            .getBindingContext()
+            .getObject().Carrid;
+
+          oRouter.navTo("RouteDetail", {
+            paramID: Carrid,
+          });
+
+          oRouter.navTo("RouteDetail", {
+            paramOrder: OrderID,
+            paramProduct: ProductID,
+          });
+        } else {
+          MessageToast.show(msg);
+        }
       },
     });
   }
