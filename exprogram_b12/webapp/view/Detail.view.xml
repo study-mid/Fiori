@@ -1,0 +1,78 @@
+<mvc:View controllerName="exam.exprogramb12.controller.Detail"
+    xmlns="sap.ui.table"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns:u="sap.ui.unified"
+	xmlns:c="sap.ui.core"
+	xmlns:m="sap.m"
+    height="100%">
+	<m:Page
+		showHeader="true"
+		enableScrolling="false"
+		showNavButton="true"
+		navButtonPress=".onNavMain"
+		title="항공편 예약 상세">
+		<m:content>
+			<Table 
+				selectionMode="MultiToggle"
+				visibleRowCount="7"
+				paste="onPaste"
+				ariaLabelledBy="title">
+				<extension>
+					<m:OverflowToolbar style="Clear">
+						<m:Title id="title" text="Products"/>
+					</m:OverflowToolbar>
+				</extension>
+				<columns>
+					<Column >
+						<m:Label text="Carrid" />
+						<template>
+							<m:Text text="{Flight>/CARRID}" wrapping="false" />
+						</template>
+					</Column>
+					<Column >
+						<m:Label text="Connid" />
+						<template>
+							<m:Text text="{Flight>/CONNID}" wrapping="false" />
+						</template>
+					</Column>
+					<Column >
+						<m:Label text="FLDATE" />
+						<template>
+							<m:Text text="{Flight>/FLDATE}" wrapping="false" />
+						</template>
+					</Column>
+					<Column >
+						<m:Label text="PRICE" />
+						<template>
+							<m:Text text="{Flight>/PRICE}" wrapping="false" />
+						</template>
+					</Column>
+					<Column >
+						<m:Label text="CURRENCY" />
+						<template>
+							<m:Text text="{Flight>/CURRENCY}" wrapping="false" />
+						</template>
+					</Column>
+					<Column >
+						<m:Label text="PLANETYPE" />
+						<template>
+							<m:Text text="{Flight>/PLANETYPE}" wrapping="false" />
+						</template>
+					</Column>
+					<Column >
+						<m:Label text="SEATSMAX" />
+						<template>
+							<m:Text text="{Flight>/SEATSMAX}" wrapping="false" />
+						</template>
+					</Column>
+					<Column >
+						<m:Label text="SEATSOCC" />
+						<template>
+							<m:Text text="{Flight>/SEATSOCC}" wrapping="false" />
+						</template>
+					</Column>
+				</columns>
+			</Table>
+		</m:content>
+	</m:Page>
+</mvc:View>

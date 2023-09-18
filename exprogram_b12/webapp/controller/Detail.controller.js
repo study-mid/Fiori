@@ -6,7 +6,7 @@ sap.ui.define(
   function (Controller) {
     "use strict";
 
-    return Controller.extend("sap.btp.ux410solving.controller.Detail", {
+    return Controller.extend("exam.exprogramb12.controller.Detail", {
       onInit: function () {
         // onInit은 최초 한번만 타짐
         var oRouter = this.getOwnerComponent().getRouter();
@@ -23,25 +23,27 @@ sap.ui.define(
         var oParam = oEvent.getParameters().arguments;
         var oModel = this.getView().getModel();
 
-        // this.getView().bindElement(
-        //   `/Order_Details(OrderID=${oParam.paramOrder},ProductID=${oParam.paramType})`
-        // );
+        console.log(oParam.paramID);
+
+        this.getView().bindElement(`/carrierSet(${oParam.paramID})`);
         // oParam 안에는 manifest.json에 등록된,
         // RouteDetail의 Parameter 값들이 있음
         // EntitySetName(Key1='value', Key2='')
 
-        var sPath = oModel.createKey("/Order_Details", {
-          OrderID: oParam.paramOrder,
-          ProductID: oParam.paramProduct,
+        var sPath = oModel.createKey("/carrierSet", {
+          Carrid: oParam.paramID,
         });
         debugger;
         oModel.read(sPath, {
+          urlParameters: {
+            $expand: "to_Flight",
+          },
           success: function (oReturn) {
             var oModel = new sap.ui.model.json.JSONModel(oReturn);
-            this.getView().setModel(oModel, "OrderDetails");
+            this.getView().setModel(oModel, "Flight");
           }.bind(this),
           error: function (oError) {},
-        }); // Odata모델을 Json 모델로 다루는법
+        });
       },
 
       onNavMain: function () {

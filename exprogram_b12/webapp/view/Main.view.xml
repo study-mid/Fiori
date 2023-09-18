@@ -1,0 +1,97 @@
+<mvc:View controllerName="exam.exprogramb12.controller.Main"
+    xmlns:core="sap.ui.core"
+    xmlns:l="sap.ui.layout"
+    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+    xmlns="sap.m"
+    xmlns:C="sap.ui.core.Control">
+    <Page id="page" title="항공사 및 항공편 조회">
+        <HBox fitContainer="true" alignItems="Stretch">
+            <VBox width="20%" class="sapUiSmallMargin">
+                <Label text="Currency Code"></Label>
+                <ComboBox id="idCurrencyInput" width="100%" items="{currList>/list}">
+                    <core:ListItem key="{currList>curr}" text="{currList>curr}"/>
+                </ComboBox>
+                <Label text="Carrier Name"></Label>
+                <Input id="idCarrierInput" width="100%" />
+                <Button text="Search" width="100%" press="onSearch" type="Emphasized"/>
+            </VBox>
+            <VBox width="80%">
+                <Table id="idCarriersTable" inset="false" items="{
+			        path: '/carrierSet',
+			        parameters: {
+                        'expand' : 'to_Item'
+                    }
+		        }" mode="SingleSelectMaster">
+                    <headerToolbar>
+                        <OverflowToolbar>
+                            <content>
+                                <Title text="Carrier List" level="H2"/>
+                                <ToolbarSpacer />
+                                <Link text="항공편 예약 상세" press="onSelectionChange" />
+                                <!--<ComboBox id="idPopinLayout"-->
+                                <!-- placeholder="Popin layout options"-->
+                                <!-- change="onPopinLayoutChanged">-->
+                                <!--	<items>-->
+                                <!--		<core:Item text="Block"-->
+                                <!-- key="Block"/>-->
+                                <!--		<core:Item text="Grid Large"-->
+                                <!-- key="GridLarge"/>-->
+                                <!--		<core:Item text="Grid Small"-->
+                                <!-- key="GridSmall"/>-->
+                                <!--	</items>-->
+                                <!--</ComboBox>-->
+                                <!--<Label text="Sticky options:" />-->
+                                <!--<CheckBox text="ColumnHeaders"-->
+                                <!-- select="onSelect"/>-->
+                                <!--<CheckBox text="HeaderToolbar"-->
+                                <!-- select="onSelect"/>-->
+                                <!--<CheckBox text="InfoToolbar"-->
+                                <!-- select="onSelect"/>-->
+                                <!--<ToggleButton id="toggleInfoToolbar"-->
+                                <!-- text="Hide/Show InfoToolbar"-->
+                                <!-- press="onToggleInfoToolbar" />-->
+                            </content>
+                        </OverflowToolbar>
+                    </headerToolbar>
+                    <!--<infoToolbar>-->
+                    <!--<OverflowToolbar>-->
+                    <!--	<Label text="Wide range of available products"/>-->
+                    <!--</OverflowToolbar>-->
+                    <!--</infoToolbar>-->
+                    <columns>
+                        <Column >
+                            <Text text="Carrid" />
+                        </Column>
+                        <Column >
+                            <Text text="Carrname" />
+                        </Column>
+                        <Column >
+                            <Text text="Currcode" />
+                        </Column>
+                        <Column >
+                            <Text text="Url" />
+                        </Column>
+                        <Column >
+                            <Text text="Length" />
+                        </Column>
+                        <Column >
+                            <Text text="Detail" />
+                        </Column>
+                    </columns>
+                    <items>
+                        <ColumnListItem>
+                            <Text text="{Carrid}"/>
+                            <Text text="{Carrname}"/>
+                            <Text text="{Currcode}"/>
+                            <Text text="{Url}"/>
+                            <Text text="{=${to_Item}.length}"/>
+                            <Button text="예약현황" enabled="{=${to_Item}.length? true : false}" press="onPress"/>
+                        </ColumnListItem>
+                    </items>
+                </Table>
+
+            </VBox>
+
+        </HBox>
+    </Page>
+</mvc:View>

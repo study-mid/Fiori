@@ -1,0 +1,73 @@
+<c:FragmentDefinition xmlns:c="sap.ui.core"
+    xmlns:l="sap.ui.layout"
+    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+    xmlns="sap.m"
+    xmlns:viz="sap.viz.ui5.controls"
+    xmlns:viz.feeds="sap.viz.ui5.controls.common.feeds"
+    xmlns:viz.data="sap.viz.ui5.data"
+    xmlns:layout="sap.ui.layout">
+    <Dialog id="idDialog" title="{CarrInfo>Carrname}">
+        <HBox fitContainer="true" alignItems="Stretch">
+            <VBox width="50%">
+                <Table id="idDialogTable" items="{
+			        path: '/carrierSet',
+			        parameters: {
+                        'expand' : 'to_Item'
+                    }
+		        }">
+                    <columns>
+                        <Column >
+                            <Text text="Carrid" />
+                        </Column>
+                        <Column >
+                            <Text text="Connid" />
+                        </Column>
+                        <Column >
+                            <Text text="SeatsMax" />
+                        </Column>
+                        <Column >
+                            <Text text="SeatsOcc" />
+                        </Column>
+                    </columns>
+                    <items>
+                        <ColumnListItem>
+                            <Text text="{=${to_Item>/Carrid}}"/>
+                            <Text text="{=${to_Item>/Connid}}"/>
+                            <Text text="{=${to_Item>/Currency}}"/>
+                            <Text text="{=${to_Item>/Planetype}}"/>
+                            <Text text="{=${to_Item>/Seatsmax}}"/>
+                            <Text text="{=${to_Item>/Seatsocc}}"/>
+                        </ColumnListItem>
+                    </items>
+                </Table>
+            </VBox>
+            <VBox width="50%">
+                <viz:VizFrame id="idVizFrame" uiConfig="{applicationSet:'fiori'}" height="500px" width="auto" vizType='stacked_column' vizProperties="{
+                        'title' : { 'visible' : true , 'text' : '예약 현황' }, 
+                        'legendGroup' : { layout : {position : 'right'}},
+                        'plotArea' : {}
+                      }" selectData="onSelectData">
+                    <viz:dataset>
+                        <viz.data:FlattenedDataset id="idFlattenedDataset">
+                            <viz.data:dimensions>
+                                <viz.data:DimensionDefinition name="항공편 번호" value="{Carrid}" />
+                            </viz.data:dimensions>
+                            <viz.data:measures>
+                                <viz.data:MeasureDefinition name="예약 좌석" value="{Seatsocc}" />
+                                <viz.data:MeasureDefinition name="총 좌석" value="{Seatsmax}" />
+                            </viz.data:measures>
+                        </viz.data:FlattenedDataset>
+                    </viz:dataset>
+
+                    <viz:feeds>
+                        <viz.feeds:FeedItem uid="valueAxis" type="Measure" values="Seatsocc,Seatsmax" />
+                        <viz.feeds:FeedItem uid="categoryAxis" type="Dimension" values="Carrid" />
+                    </viz:feeds>
+                </viz:VizFrame>
+            </VBox>
+        </HBox>
+        <endButton>
+            <Button text="Close" press="onClose"/>
+        </endButton>
+    </Dialog>
+</c:FragmentDefinition>
