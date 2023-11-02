@@ -1,0 +1,83 @@
+<mvc:View xmlns:table="sap.ui.table" controllerName="projectb1210.controller.Main"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.uxap"
+    xmlns:m="sap.m">
+    <ObjectPageLayout id="ObjectPageLayout" useIconTabBar="false" upperCaseAnchorBar="false">
+        <headerTitle>
+            <ObjectPageHeader objectTitle="Section sample">
+            </ObjectPageHeader>
+        </headerTitle>
+
+        <headerContent>
+            <m:Input width="20%" showValueHelp="true" valueHelpRequest="onValueHelp"/>
+        </headerContent>
+
+        <sections>
+            <ObjectPageSection titleUppercase="false" title="Section 5">
+                <subSections>
+                    <ObjectPageSubSection titleUppercase="false">
+                    <m:Image id="idImage" width="200px"/>
+                        <!-- <src="https://img1.daumcdn.net/thumb/R1280x0.fjpg/?fname=http://t1.daumcdn.net/brunch/service/user/cnoC/image/4yPtuRXtR0-jusOMCCXb4MeN6zU.jpg" /> -->
+                        <blocks>
+                            <m:Table id="idProductsTable"  sticky="HeaderToolbar,ColumnHeaders" inset="false" mode="SingleSelectMaster" items="{/SBOOKSet}" selectionChange="onSelectionChange" class="sapFDynamicPageAlignContent" width="auto">
+                                <m:headerToolbar>
+                                    <m:Toolbar>
+                                        <m:Title text="Products" level="H2"/>
+                                    </m:Toolbar>
+                                </m:headerToolbar>
+                                <m:columns>
+                                    <m:Column width="12em">
+                                        <m:Text text="Carrid" />
+                                    </m:Column>
+
+                                    <m:Column width="12em">
+                                        <m:Text text="Connid" />
+                                    </m:Column>
+
+                                    <m:Column width="12em">
+                                        <m:Text text="Fldate" />
+                                    </m:Column>
+
+                                    <m:Column width="12em">
+                                        <m:Text text="Bookid" />
+                                    </m:Column>
+
+                                    <m:Column width="12em">
+                                        <m:Text text="Class" />
+                                    </m:Column>
+                                </m:columns>
+                                <m:items>
+                                    <m:ColumnListItem >
+                                        <m:cells>
+                                            <m:Text text="{Carrid}" />
+                                            <m:Text text="{Connid}" />
+                                            <m:Text text="{
+                                                            path : 'Fldate',
+                                                            type : 'sap.ui.model.type.Date',
+                                                            formatOptions : {
+                                                                pattern : 'yyyy-MM-dd'
+                                                            }}" />
+                                            <m:Text text="{Bookid}" />
+                                            <m:Text text="{Class}" />
+                                        </m:cells>
+                                    </m:ColumnListItem>
+                                </m:items>
+                            </m:Table>
+                        </blocks>
+                    </ObjectPageSubSection>
+                </subSections>
+            </ObjectPageSection>
+            <ObjectPageSection titleUppercase="false" title="TAB 2">
+                <subSections>
+                    <ObjectPageSubSection titleUppercase="false">
+                        <blocks>
+                            <m:Text text="test"/>
+                        </blocks>
+                    </ObjectPageSubSection>
+                </subSections>
+            </ObjectPageSection>
+
+        </sections>
+
+    </ObjectPageLayout>
+</mvc:View>

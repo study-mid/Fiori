@@ -19,6 +19,7 @@ sap.ui.define(
         };
 
         this.getView().setModel(new JSONModel(oData), "currList");
+        this.getView().setModel(new JSONModel(oData), "popup");
       },
 
       onSearch: function () {
@@ -66,10 +67,9 @@ sap.ui.define(
       },
 
       onPress: function (oEvent) {
-        var oDialog = sap.ui.getCore().byId("idDialog");
         var oModel = this.getView().getModel();
+        var oPopupModel = this.getView().getModel("popup");
         var sPath = oEvent.getSource().getBindingContext().sPath;
-        var oCarr = ""; //Carrname 받아올 변수
         // oModel.createKey(oCarr);
         // var sPath = oModel.createKey("/carrierSet", {
         //   OrderID: oParam.paramOrder,
@@ -83,24 +83,7 @@ sap.ui.define(
           urlParameters: { $expand: "to_Item" },
           success: function (oReturn) {
             console.log("successed");
-            var oModel = new sap.ui.model.json.JSONModel(oReturn);
-            this.getView().setModel(oModel, "CarrInfo");
-            // oCarr = this.getView().getModel("CarrInfo").oData.Carrname;
-
-            if (!oDialog) {
-              Fragment.load({
-                name: "exam.exprogramb12.view.Chart",
-                type: "XML",
-                controller: this,
-              }).then(function (oDialog) {
-                oDialog.setModel(oModel, "CarrInfo");
-                // oDialog.setHeaderText(oCarr);
-                debugger;
-                oDialog.open();
-              });
-            } else {
-              oDialog.open();
-            }
+            this.onOpenDialog(oReturn);
           }.bind(this),
           error: function (oError) {
             console.log("failed");
@@ -121,6 +104,23 @@ sap.ui.define(
         // } else {
         //   oDialog.open();
         // }
+      },
+
+      onOpenDialog: function (oReturn) {
+        var oDialog = sap.ui.getCore().byId("idDialog");
+        var oModel = new sap.ui.model.json.JSONModel(oReturn);
+
+        if (!oDialog) {
+          Fragment.load({
+            name: "exam.exprogramb12.view.Chart",
+            type: "XML",
+            controller: this,
+          }).then(function (oDialog) {
+            oDialog.open();
+          });
+        } else {
+          oDialog.open();
+        }
       },
 
       onClose: function (oEvent) {

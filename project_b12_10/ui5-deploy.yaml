@@ -1,0 +1,25 @@
+# yaml-language-server: $schema=https://sap.github.io/ui5-tooling/schema/ui5.yaml.json
+
+specVersion: "2.6"
+metadata:
+  name: projectb1210
+type: application
+builder:
+  resources:
+    excludes:
+      - /test/**
+      - /localService/**
+  customTasks:
+    - name: deploy-to-abap
+      afterTask: generateCachebusterInfo
+      configuration:
+        target:
+          url: http://sapmento.mento.co.kr:8001/
+          client: "100"
+        app:
+          name: ZUI5_B12_01
+          description: ""
+          package: $tmp
+          transport: ""
+        exclude:
+          - /test/
