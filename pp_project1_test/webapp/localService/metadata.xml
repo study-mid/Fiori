@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="1.0" xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx" xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" xmlns:sap="http://www.sap.com/Protocols/SAPData">
+    <edmx:DataServices m:DataServiceVersion="2.0">
+        <Schema Namespace="ZBC_PPT010_SRV" xml:lang="en" sap:schema-version="1" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+            <EntityType Name="ZBC_PPT010" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="PlntCd"/>
+                </Key>
+                <Property Name="Seq" Type="Edm.String" Nullable="false" MaxLength="2" sap:unicode="false" sap:label="순서" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="PlntCd" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="공장코드" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="PlntAd" Type="Edm.String" Nullable="false" MaxLength="60" sap:unicode="false" sap:label="공장주소" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="PlntSup" Type="Edm.String" Nullable="false" MaxLength="7" sap:unicode="false" sap:label="공장총괄" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="CapaMax" Type="Edm.String" Nullable="false" MaxLength="2" sap:unicode="false" sap:label="일일 최대 생산량" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="CapaAvg" Type="Edm.String" Nullable="false" MaxLength="2" sap:unicode="false" sap:label="일일 평균 생산량" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="XDel" Type="Edm.String" Nullable="false" MaxLength="1" sap:unicode="false" sap:label="삭제플래그" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="CreateDt" Type="Edm.DateTime" Nullable="false" Precision="7" sap:unicode="false" sap:label="생성일자" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="CreateTm" Type="Edm.Time" Nullable="false" Precision="0" sap:unicode="false" sap:label="생성시간" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Cuser" Type="Edm.String" Nullable="false" MaxLength="12" sap:unicode="false" sap:label="생성작성자" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="UpdateDt" Type="Edm.DateTime" Nullable="false" Precision="7" sap:unicode="false" sap:label="변경일자" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="UpdateTm" Type="Edm.Time" Nullable="false" Precision="0" sap:unicode="false" sap:label="변경일자" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Uuser" Type="Edm.String" Nullable="false" MaxLength="12" sap:unicode="false" sap:label="수정담당자" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <EntityContainer Name="ZBC_PPT010_SRV_Entities" m:IsDefaultEntityContainer="true" sap:supported-formats="atom json xlsx">
+                <EntitySet Name="ZBC_PPT010Set" EntityType="ZBC_PPT010_SRV.ZBC_PPT010" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+            </EntityContainer>
+            <atom:link rel="self" href="http://sapmento.mento.co.kr:8001/sap/opu/odata/sap/ZBC_PPT010_SRV/$metadata" xmlns:atom="http://www.w3.org/2005/Atom"/>
+            <atom:link rel="latest-version" href="http://sapmento.mento.co.kr:8001/sap/opu/odata/sap/ZBC_PPT010_SRV/$metadata" xmlns:atom="http://www.w3.org/2005/Atom"/>
+        </Schema>
+    </edmx:DataServices>
+</edmx:Edmx>

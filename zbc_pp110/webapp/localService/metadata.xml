@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="1.0" xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx" xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" xmlns:sap="http://www.sap.com/Protocols/SAPData">
+    <edmx:DataServices m:DataServiceVersion="2.0">
+        <Schema Namespace="ZBC_PP110_SRV" xml:lang="en" sap:schema-version="1" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+            <EntityType Name="Header" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="RoutCd"/>
+                </Key>
+                <Property Name="RoutCd" Type="Edm.String" Nullable="false" MaxLength="8" sap:unicode="false" sap:label="공정코드" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="PlntCd" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="공장코드" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="BomId" Type="Edm.String" Nullable="false" MaxLength="9" sap:unicode="false" sap:label="BOM ID" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="MatCd" Type="Edm.String" Nullable="false" MaxLength="8" sap:unicode="false" sap:label="자재코드" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="LineCd" Type="Edm.String" Nullable="false" MaxLength="5" sap:unicode="false" sap:label="라인 코드" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="LineMa" Type="Edm.String" Nullable="false" MaxLength="7" sap:unicode="false" sap:label="라인담당자" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="RoutNm" Type="Edm.String" Nullable="false" MaxLength="20" sap:unicode="false" sap:label="작업명" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="RoutDes" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:label="작업 설명" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="RoutTm" Type="Edm.Time" Nullable="false" Precision="0" sap:unicode="false" sap:label="작업 시간" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="XDel" Type="Edm.String" Nullable="false" MaxLength="1" sap:unicode="false" sap:label="삭제플래그" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <NavigationProperty Name="ItemSet" Relationship="ZBC_PP110_SRV.ToItem" FromRole="FromRole_ToItem" ToRole="ToRole_ToItem"/>
+            </EntityType>
+            <EntityType Name="Item" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="RoutCd"/>
+                    <PropertyRef Name="RoutDCd"/>
+                </Key>
+                <Property Name="RoutCd" Type="Edm.String" Nullable="false" MaxLength="8" sap:unicode="false" sap:label="공정코드" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="RoutDCd" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="세부공정코드" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="RoutDNm" Type="Edm.String" Nullable="false" MaxLength="6" sap:unicode="false" sap:label="세부공정작업명" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="RoutDSeq" Type="Edm.String" Nullable="false" MaxLength="1" sap:unicode="false" sap:label="작업순서" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="RoutDDes" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:label="세부공정작업 시간" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="RoutDTm" Type="Edm.Time" Nullable="false" Precision="0" sap:unicode="false" sap:label="작업 시간" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <Association Name="ToItem" sap:content-version="1">
+                <End Type="ZBC_PP110_SRV.Header" Multiplicity="1" Role="FromRole_ToItem"/>
+                <End Type="ZBC_PP110_SRV.Item" Multiplicity="*" Role="ToRole_ToItem"/>
+                <ReferentialConstraint>
+                    <Principal Role="FromRole_ToItem">
+                        <PropertyRef Name="RoutCd"/>
+                    </Principal>
+                    <Dependent Role="ToRole_ToItem">
+                        <PropertyRef Name="RoutCd"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <EntityContainer Name="ZBC_PP110_SRV_Entities" m:IsDefaultEntityContainer="true" sap:supported-formats="atom json xlsx">
+                <EntitySet Name="HeaderSet" EntityType="ZBC_PP110_SRV.Header" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="ItemSet" EntityType="ZBC_PP110_SRV.Item" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <AssociationSet Name="ToItemSet" Association="ZBC_PP110_SRV.ToItem" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="HeaderSet" Role="FromRole_ToItem"/>
+                    <End EntitySet="ItemSet" Role="ToRole_ToItem"/>
+                </AssociationSet>
+            </EntityContainer>
+            <atom:link rel="self" href="http://sapmento.mento.co.kr:8001/sap/opu/odata/sap/ZBC_PP110_SRV/$metadata" xmlns:atom="http://www.w3.org/2005/Atom"/>
+            <atom:link rel="latest-version" href="http://sapmento.mento.co.kr:8001/sap/opu/odata/sap/ZBC_PP110_SRV/$metadata" xmlns:atom="http://www.w3.org/2005/Atom"/>
+        </Schema>
+    </edmx:DataServices>
+</edmx:Edmx>

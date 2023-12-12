@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="1.0" xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx" xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" xmlns:sap="http://www.sap.com/Protocols/SAPData">
+    <edmx:DataServices m:DataServiceVersion="2.0">
+        <Schema Namespace="ZBC_PP120_SRV" xml:lang="en" sap:schema-version="1" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+            <EntityType Name="Header" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="ProCd"/>
+                </Key>
+                <Property Name="ProCd" Type="Edm.String" Nullable="false" MaxLength="11" sap:unicode="false" sap:label="생산오더코드" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="PpCd" Type="Edm.String" Nullable="false" MaxLength="11" sap:unicode="false" sap:label="생산계획코드" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="PlntCd" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="공장코드" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Quant" Type="Edm.Decimal" Nullable="false" Precision="8" Scale="0" sap:unicode="false" sap:unit="Unit" sap:label="총생산수량" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Unit" Type="Edm.String" Nullable="false" MaxLength="3" sap:unicode="false" sap:label="단위" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false" sap:semantics="unit-of-measure"/>
+                <Property Name="ProCDt" Type="Edm.DateTime" Nullable="false" Precision="7" sap:unicode="false" sap:label="오더확정일" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ProSDt" Type="Edm.DateTime" Nullable="false" Precision="7" sap:unicode="false" sap:label="생산시작일" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ProSTm" Type="Edm.Time" Nullable="false" Precision="0" sap:unicode="false" sap:label="생산시작시간" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ProEDt" Type="Edm.DateTime" Nullable="false" Precision="7" sap:unicode="false" sap:label="생산종료일" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ProETm" Type="Edm.Time" Nullable="false" Precision="0" sap:unicode="false" sap:label="생산종료시간" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ProPer" Type="Edm.Decimal" Nullable="false" Precision="5" Scale="2" sap:unicode="false" sap:label="생산퍼센트" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="XStat" Type="Edm.String" Nullable="false" MaxLength="20" sap:unicode="false" sap:label="상태플래그" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <NavigationProperty Name="ItemSet" Relationship="ZBC_PP120_SRV.ToItem" FromRole="FromRole_ToItem" ToRole="ToRole_ToItem"/>
+            </EntityType>
+            <EntityType Name="Item" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="ProCd"/>
+                </Key>
+                <Property Name="ProCd" Type="Edm.String" Nullable="false" MaxLength="11" sap:unicode="false" sap:label="생산오더코드" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ProItemCd" Type="Edm.String" Nullable="false" MaxLength="2" sap:unicode="false" sap:label="판매오더아이템코드" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="PlntCd" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="공장코드" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="LineCd" Type="Edm.String" Nullable="false" MaxLength="5" sap:unicode="false" sap:label="라인 코드" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="BomId" Type="Edm.String" Nullable="false" MaxLength="9" sap:unicode="false" sap:label="BOM ID" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="MatCd" Type="Edm.String" Nullable="false" MaxLength="8" sap:unicode="false" sap:label="자재코드" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ProiSDt" Type="Edm.DateTime" Nullable="false" Precision="7" sap:unicode="false" sap:label="제품별 시작일" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="PpriSTm" Type="Edm.Time" Nullable="false" Precision="0" sap:unicode="false" sap:label="제품별 시작시간" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ProiEDt" Type="Edm.DateTime" Nullable="false" Precision="7" sap:unicode="false" sap:label="제품별 종료일" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="PpriETm" Type="Edm.Time" Nullable="false" Precision="0" sap:unicode="false" sap:label="제품별 종료시간" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ProIQuant" Type="Edm.Decimal" Nullable="false" Precision="8" Scale="0" sap:unicode="false" sap:unit="Unit" sap:label="제품별 생산 수량" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Unit" Type="Edm.String" Nullable="false" MaxLength="3" sap:unicode="false" sap:label="단위" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false" sap:semantics="unit-of-measure"/>
+                <Property Name="XStat" Type="Edm.String" Nullable="false" MaxLength="20" sap:unicode="false" sap:label="상태플래그" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ProCheck" Type="Edm.String" Nullable="false" MaxLength="1" sap:unicode="false" sap:label="삭제플래그" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <Association Name="ToItem" sap:content-version="1">
+                <End Type="ZBC_PP120_SRV.Header" Multiplicity="1" Role="FromRole_ToItem"/>
+                <End Type="ZBC_PP120_SRV.Item" Multiplicity="*" Role="ToRole_ToItem"/>
+                <ReferentialConstraint>
+                    <Principal Role="FromRole_ToItem">
+                        <PropertyRef Name="ProCd"/>
+                    </Principal>
+                    <Dependent Role="ToRole_ToItem">
+                        <PropertyRef Name="ProCd"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <EntityContainer Name="ZBC_PP120_SRV_Entities" m:IsDefaultEntityContainer="true" sap:supported-formats="atom json xlsx">
+                <EntitySet Name="HeaderSet" EntityType="ZBC_PP120_SRV.Header" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="ItemSet" EntityType="ZBC_PP120_SRV.Item" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <AssociationSet Name="ToItemSet" Association="ZBC_PP120_SRV.ToItem" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="HeaderSet" Role="FromRole_ToItem"/>
+                    <End EntitySet="ItemSet" Role="ToRole_ToItem"/>
+                </AssociationSet>
+            </EntityContainer>
+            <atom:link rel="self" href="http://sapmento.mento.co.kr:8001/sap/opu/odata/sap/ZBC_PP120_SRV/$metadata" xmlns:atom="http://www.w3.org/2005/Atom"/>
+            <atom:link rel="latest-version" href="http://sapmento.mento.co.kr:8001/sap/opu/odata/sap/ZBC_PP120_SRV/$metadata" xmlns:atom="http://www.w3.org/2005/Atom"/>
+        </Schema>
+    </edmx:DataServices>
+</edmx:Edmx>

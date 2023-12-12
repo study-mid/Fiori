@@ -1,0 +1,80 @@
+<mvc:View controllerName="ppproject1test.controller.Main"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    xmlns:vbm="sap.ui.vbm"
+    xmlns:l="sap.ui.layout"
+    xmlns:f="sap.f"
+    xmlns:fb="sap.ui.comp.filterbar"
+    xmlns:svm="sap.ui.comp.smartvariants">
+    <f:header>
+        <f:DynamicPageHeader>
+            <f:content>
+                <fb:FilterBar id="filterbar" persistencyKey="myPersKey" useToolbar="false" search=".onSearch" filterChange=".onFilterChange" afterVariantLoad=".onAfterVariantLoad">
+                    <fb:filterGroupItems>
+                        <fb:FilterGroupItem name="Name" label="Name" groupName="Group1" visibleInFilterBar="true">
+                            <fb:control>
+                                <MultiComboBox name="Name" selectionChange=".onSelectionChange" items="{
+												path: '/ProductNames',
+												templateShareable: true
+											}">
+                                    <core:Item key="{key}" text="{name}"/>
+                                </MultiComboBox>
+                            </fb:control>
+                        </fb:FilterGroupItem>
+                        <fb:FilterGroupItem name="Category" label="Category" groupName="Group1" visibleInFilterBar="true">
+                            <fb:control>
+                                <MultiComboBox name="Category" selectionChange=".onSelectionChange" items="{
+												path: '/ProductCategories',
+												templateShareable: true
+											}">
+                                    <core:Item key="{key}" text="{name}"/>
+                                </MultiComboBox>
+                            </fb:control>
+                        </fb:FilterGroupItem>
+                        <fb:FilterGroupItem name="SupplierName" label="SupplierName" groupName="Group1" visibleInFilterBar="true">
+                            <fb:control>
+                                <MultiComboBox name="SupplierName" selectionChange=".onSelectionChange" items="{
+												path: '/ProductSuppliers',
+												templateShareable: true
+											}">
+                                    <core:Item key="{key}" text="{name}"/>
+                                </MultiComboBox>
+                            </fb:control>
+                        </fb:FilterGroupItem>
+                    </fb:filterGroupItems>
+                </fb:FilterBar>
+            </f:content>
+        </f:DynamicPageHeader>
+    </f:header>
+    <App>
+        <pages>
+            <Page title="[PP] Work Center">
+                <VBox width="50%" height="50%">
+
+                </VBox>
+                <content>
+                    <vbm:GeoMap id="GeoMap" width="50%" height="50%" />
+                </content>
+            </Page>
+        </pages>
+    </App>
+
+    <HBox >
+        <l:FixFlex class="fixFlexFixedSize">
+            <l:flexContent>
+                <vbm:AnalyticMap id="vbi" width="100%"
+                    xmlns:l="sap.ui.layout" height="100%" initialPosition="-98;30;0" initialZoom="4" regionClick="onRegionClick" regionContextMenu="onRegionContextMenu" regions="{/Regions}">
+                    <vbm:regions>
+                        <vbm:Region code="{code}" color="{color}" tooltip="{county}" />
+                    </vbm:regions>
+                    <vbm:legend>
+                        <vbm:Legend id="legend" caption="Decline in birth rate" items="{/Legend}">
+                            <vbm:LegendItem text="{text}" color="{color}" />
+                        </vbm:Legend>
+                    </vbm:legend>
+                </vbm:AnalyticMap>
+            </l:flexContent>
+        </l:FixFlex>
+    </HBox>
+
+</mvc:View>

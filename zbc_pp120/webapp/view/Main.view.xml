@@ -1,0 +1,130 @@
+<mvc:View xmlns:f="sap.ui.layout.form" controllerName="zbcpp120.controller.Main"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns:core="sap.ui.core"
+	xmlns:unified="sap.ui.unified"
+	xmlns="sap.m"
+	xmlns:l="sap.ui.layout">
+	<l:DynamicSideContent id="DynamicSideContent" class="sapUiDSCExplored sapUiContentPadding" sideContentVisibility="AlwaysShow" showSideContent="{path: 'stateModel>/legendShown'}" containerQuery="true">
+		<VBox >
+			<SinglePlanningCalendar id="SPC1" class="sapUiSmallMarginTop" title= "생산오더 달력" appointmentSelect="handleAppointmentSelect" startDateChange="handleStartDateChange" moreLinkPress="handleMoreLinkPress" appointments="{path: '/HeaderSet'}">
+				<!-- <actions>
+                        <Button id="addNewAppointment" text="Create" press="handleAppointmentCreate" tooltip="Add new appointment" />
+                        <Button id="legendButton" icon="sap-icon://legend" press="handleOpenLegend" tooltip="Open SinglePlanningCalendar legend" ariaHasPopup="Dialog" />
+                    </actions> -->
+				<views>
+					<!-- <SinglePlanningCalendarDayView key="DayView" title="Day" />
+                        <SinglePlanningCalendarWorkWeekView key="WorkWeekView" title="Week" /> -->
+					<SinglePlanningCalendarMonthView key="MonthView" title="Month" />
+				</views>
+				<appointments>
+					<unified:CalendarAppointment title= "{ProCd}" text= "{ProCd}" type= "{type}" icon= "{icon}" color="" 
+					startDate= "{ProCDt}" endDate= "{ProCDt}">
+					</unified:CalendarAppointment>
+				</appointments>
+			</SinglePlanningCalendar>
+		</VBox>
+
+		<l:sideContent>
+			<VBox class="sapUiSmallMargin">
+				<f:SimpleForm id="SimpleFormDisplay354" editable="false" layout="ResponsiveGridLayout" title="생산오더 정보" labelSpanXL="3" labelSpanL="3" labelSpanM="3" labelSpanS="12" adjustLabelSpan="false" emptySpanXL="4" emptySpanL="4" emptySpanM="4" emptySpanS="0" columnsXL="1" columnsL="1" columnsM="1" singleContainerFullSize="false">
+					<f:content>
+						<Label text="생산오더코드" />
+						<Text id="nameText" text="{formModel>/ProCd}" />
+						<Label text="생산계획코드" />
+						<Text text="{formModel>/PpCd}" />
+						<Label text="공장" />
+						<Text text="{formModel>/PlntCd}" />
+						<Label text="총생산수량" />
+						<Text id="countryText" text="{formModel>/Quant} {formModel>/Unit}" />
+						<Label text="오더확정일" />
+						<Text text="{path: 'formModel>/ProCDt', formatter:'.formatter.fnDateString'}" />
+						<Label text="생산시작일" />
+						<Text text="{path: 'formModel>/ProSDt', formatter:'.formatter.fnDateString'}" />
+						<Label text="생산종료일" />
+						<Text text="{path: 'formModel>/ProEDt', formatter:'.formatter.fnDateString'}" />
+					</f:content>
+				</f:SimpleForm>
+			</VBox>
+			<!-- <VBox class="sapUiSmallMargin">
+				<f:SimpleForm id="SimpleFormDisplay355" editable="false" layout="ResponsiveGridLayout" title="생산오더 정보" labelSpanXL="3" labelSpanL="3" labelSpanM="3" labelSpanS="12" adjustLabelSpan="false" emptySpanXL="4" emptySpanL="4" emptySpanM="4" emptySpanS="0" columnsXL="1" columnsL="1" columnsM="1" singleContainerFullSize="false">
+					<f:content>
+						<Label text="생산아이템코드" />
+						<ObjectIdentifier title="{oTableModel>/ItemSet/ProCd}" text="{oTableModel>/ItemSet/ProItemCd}"/>
+						<Label text="공장-라인" />
+						<Text text="{oTableModel>/ItemSet/PlntCd} - {oTableModel>/ItemSet/LineCd}" />
+						<Label text="공장" />
+						<Text text="{formModel>/ItemSet/PlntCd}" />
+						<Label text="총생산수량" />
+						<Text id="countryText2" text="{formModel>/Quant} {formModel>/Unit}" />
+						<Label text="오더확정일" />
+						<Text text="{path: 'formModel>/ProCDt', formatter:'.formatter.fnDateString'}" />
+						<Label text="생산시작일" />
+						<Text text="{path: 'formModel>/ProSDt', formatter:'.formatter.fnDateString'}" />
+						<Label text="제품별 생산 수량" />
+						<ObjectNumber number="{formModel>/ItemSet/ProIQuant}" unit="{formModel>/ItemSet/Unit}"/>
+					</f:content>
+				</f:SimpleForm>
+			</VBox>
+			<Table id="idProductsTable" inset="false"
+			items="{
+				path: 'formModel',
+			    parameters: {
+                        'expand' : 'ItemSet'
+                    }
+				}">
+				<headerToolbar>
+					<OverflowToolbar>
+						<content>
+							<Title text="생산오더 세부 내역" level="H2"/>
+							<ToolbarSpacer />
+						</content>
+					</OverflowToolbar>
+				</headerToolbar>
+				<columns>
+					<Column width="12em">
+						<Text text="생산아이템코드" />
+					</Column>
+					<Column minScreenWidth="Tablet" demandPopin="true">
+						<Text text="공장-라인" />
+					</Column>
+					<Column minScreenWidth="Desktop" demandPopin="true" hAlign="End">
+						<Text text="BOM ID" />
+					</Column>
+					<Column minScreenWidth="Desktop" demandPopin="true" hAlign="Center">
+						<Text text="자재코드" />
+					</Column>
+					<Column minScreenWidth="Desktop" demandPopin="true">
+						<Text text="제품별 시작일" />
+					</Column >
+					<Column minScreenWidth="Desktop" demandPopin="true">
+						<Text text="제품별 종료일" />
+					</Column>
+					<Column hAlign="End">
+						<Text text="제품별 생산 수량" />
+					</Column>
+				</columns>
+				<items>
+					<ColumnListItem vAlign="Middle">
+						<cells>
+							<ObjectIdentifier title="{ProCd}" text="{ProItemCd}"/>
+							<Text text="{PlntCd} - {LineCd}" />
+							<Text text="{formModel>/ItemSet/BomId}" />
+							<Text text="{formModel>/ItemSet/MatCd}" />
+							<Text text="{path: 'formModel>/ItemSet/ProiSDt', formatter:'.formatter.fnDateString'}" />
+							<Text text="{path: 'formModel>/ItemSet/ProiEDt', formatter:'.formatter.fnDateString'}" />
+							<ObjectNumber number="{WeightMeasure}" unit="{WeightUnit}" state="{
+							parts: [
+								{path: 'WeightMeasure'},
+								{path: 'WeightUnit'}
+							],
+							formatter: 'sap.m.sample.Table.Formatter.weightState'
+						}" />
+							<ObjectNumber number="{formModel>/ItemSet/ProIQuant}" unit="{formModel>/ItemSet/Unit}" />
+						</cells>
+					</ColumnListItem>
+				</items>
+			</Table> -->
+			<Button text="Close" press="onButtonPress"></Button>
+		</l:sideContent>
+	</l:DynamicSideContent>
+</mvc:View>
